@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gelato Express | Cardápio</title>
+<meta name="description" content="Peça de casa e retire na loja. Casquinhas, sundaes e milkshakes da Gelato Express, com pedido direto pelo WhatsApp.">
+<meta name="theme-color" content="#1b0e09">
+<link rel="icon" href="logo.jpg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gelato Express | Cardápio">
+<meta property="og:description" content="Peça de casa e retire na loja. Casquinhas, sundaes e milkshakes com pedido pelo WhatsApp.">
+<meta property="og:image" content="https://gelato-express.vercel.app/banner.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1b0e09;--card:#2b170f;--acc:#ff8a2b;--acc2:#ffb066;--ink:#ffe6cc;--mute:#d9ab86;--glow:rgba(255,138,43,.35);--err:#ff7a6b;box-sizing:border-box;color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 118px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.45 Nunito,system-ui,sans-serif;padding-bottom:96px}
+h1,h2,h3{font-family:"Lobster Two",Georgia,serif;font-weight:700;margin:0}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--acc2);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(27,14,9,.94);backdrop-filter:blur(8px);border-bottom:1px solid #4a2a1a}
+.bar{display:flex;align-items:center;gap:12px;padding:10px 0}
+.bar img{width:46px;height:43px;border-radius:50%;object-fit:cover;box-shadow:0 0 12px var(--glow)}
+.bar h1{font-size:26px;flex:1;color:var(--acc2);text-shadow:0 0 14px var(--glow)}
+.cartbtn{background:none;border:1.5px solid var(--acc);color:var(--ink);border-radius:999px;padding:8px 14px;font-weight:800;box-shadow:0 0 10px var(--glow)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none}
+.chips a{flex:none;color:var(--ink);text-decoration:none;border:1px solid #6a3a22;border-radius:999px;padding:6px 14px;font-weight:700;font-size:14px}
+.chips a:hover{border-color:var(--acc)}
+.hero{margin:16px 0 8px;border-radius:18px;overflow:hidden;box-shadow:0 0 0 2px var(--acc),0 0 28px var(--glow)}
+.hero img{display:block;width:100%;height:auto}
+.how{margin:14px 0 4px;padding:12px 16px;border-radius:14px;background:var(--card);border:1px dashed var(--acc);color:var(--mute);font-size:15px}
+.how b{color:var(--ink)}
+section{padding-top:26px}
+section h2{font-size:32px;color:var(--acc2);text-shadow:0 0 16px var(--glow)}
+.sub{margin:2px 0 12px;color:var(--mute);font-size:14px}
+.card{display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--card);border:1.5px solid #6a3a22;border-radius:16px;padding:14px 16px;margin-top:12px}
+.card.hot{border-color:var(--acc);box-shadow:0 0 14px var(--glow)}
+.card h3{font-size:22px;line-height:1.15}
+.card p{margin:4px 0 0;color:var(--mute);font-size:14px}
+.price{font-weight:800;color:var(--acc2);margin-top:6px}
+.btn{background:var(--acc);color:#2a1105;border:0;border-radius:12px;padding:11px 16px;font-weight:800;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:none;color:var(--ink);border:1.5px solid var(--acc)}
+footer{margin:36px 0 8px;text-align:center;color:var(--mute);font-size:13px}
+#bottom{position:fixed;left:0;right:0;bottom:0;z-index:6;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 40%);display:none}
+#bottom .btn{display:flex;width:100%;max-width:720px;margin:0 auto;justify-content:space-between;padding:15px 18px;font-size:16px;box-shadow:0 0 22px var(--glow)}
+#ov{position:fixed;inset:0;z-index:10;background:rgba(0,0,0,.7);display:none;align-items:flex-end;justify-content:center}
+#ov.on{display:flex}
+#sheet{width:100%;max-width:720px;max-height:90%;overflow-y:auto;background:var(--bg);border:2px solid var(--acc);border-bottom:0;border-radius:22px 22px 0 0;padding:20px 18px calc(22px + env(safe-area-inset-bottom,0px));box-shadow:0 0 30px var(--glow);animation:up .22s ease-out}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+@media(prefers-reduced-motion:reduce){#sheet{animation:none}html{scroll-behavior:auto}}
+#sheet h2{font-size:30px;color:var(--acc2)}
+.top{display:flex;justify-content:space-between;align-items:start;gap:8px}
+.x{background:none;border:0;color:var(--ink);font-size:28px;line-height:1;padding:0 6px}
+fieldset{border:0;padding:0;margin:16px 0 0}
+legend{font-weight:800;margin-bottom:8px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill input{position:absolute;opacity:0}
+.pill span{display:block;border:1.5px solid #6a3a22;border-radius:999px;padding:8px 14px;font-weight:700}
+.pill input:checked+span{background:var(--acc);border-color:var(--acc);color:#2a1105}
+.pill input:focus-visible+span{outline:3px solid var(--acc2);outline-offset:2px}
+.row{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:20px}
+.step{display:flex;align-items:center;gap:4px;border:1.5px solid var(--acc);border-radius:12px}
+.step button{background:none;border:0;color:var(--ink);font-size:22px;width:40px;height:40px}
+.step b{min-width:22px;text-align:center}
+.row .btn{flex:1}
+.err{color:var(--err);font-weight:700;min-height:1.4em;margin:10px 0 0}
+.line{display:flex;gap:10px;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #4a2a1a}
+.line small{display:block;color:var(--mute)}
+label.f{display:block;margin-top:14px;font-weight:800}
+input[type=text],select,textarea{display:block;width:100%;margin-top:6px;background:var(--card);color:var(--ink);border:1.5px solid #6a3a22;border-radius:12px;padding:12px;font:inherit}
+.tot{display:flex;justify-content:space-between;font-size:20px;font-weight:800;margin-top:16px}
+.note{color:var(--mute);font-size:13px;margin-top:10px}
+.note a{color:var(--acc2)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="bar"><img src="logo.jpg" alt="Logo Gelato Express"><h1>Gelato Express</h1><button class="cartbtn" id="cb" aria-label="Abrir pedido">Pedido <span id="cn">0</span></button></div>
+  <nav class="chips" aria-label="Categorias"><a href="#cas">Casquinha</a><a href="#sun">Sundae</a><a href="#esp">Especiais</a><a href="#mil">Milkshakes</a></nav>
+</div></header>
+<main class="wrap">
+  <div class="hero"><img src="banner.jpg" alt="Gelato Express, sorveteria e doceria"></div>
+  <p class="how"><b>Peça de casa, retire na loja.</b> Monte seu pedido aqui e envie pelo WhatsApp para confirmar e pagar.</p>
+  <div id="menu"></div>
+  <footer>Gelato Express · Desde 2025</footer>
+</main>
+<div id="bottom"><button class="btn" id="bb"><span id="bl"></span><span id="bt"></span></button></div>
+<div id="ov"><div id="sheet" role="dialog" aria-modal="true"></div></div>
+<script>
+const PHONE="5581991554949";
+const R=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const $=s=>document.querySelector(s);
+const G=(k,o,price)=>({k,o:o.map(x=>Array.isArray(x)?x:[x]),price});
+const D=[
+{id:"cas",t:"Sorvete de casquinha",s:"Crocante e na hora",items:[
+ {n:"Baunilha",p:3.5},{n:"Chocolate",p:3.5},{n:"Misto",p:3.5,d:"Baunilha e chocolate na mesma casquinha"}]},
+{id:"sun",t:"Sundae tradicional",s:"Monte do seu jeito",items:[
+ {n:"Sundae tradicional",p:8,d:"Sorvete de chocolate, baunilha ou misto, com a cobertura que você escolher. Amendoim é opcional.",g:[G("Sabor",["Chocolate","Baunilha","Misto"]),G("Amendoim",["Sem amendoim","Com amendoim"]),G("Cobertura",["Morango","Leite condensado","Chocolate"])]}]},
+{id:"esp",t:"Sundaes especiais",s:"Os queridinhos da casa",items:[
+ {n:"Floresta Negra",p:12,d:"Sorvete de chocolate, pedaços de morango, geleia de morango e calda de morango."},
+ {n:"Arretado de Bom",p:11,d:"Sorvete de baunilha, paçoca, amendoim e uma deliciosa calda de leite condensado."},
+ {n:"IceBrownie",p:13,d:"Sorvete misto, calda artesanal de chocolate e pedaços de brownie."},
+ {n:"Chocoresco",p:12,d:"Sorvete de chocolate, calda artesanal de chocolate e bastante chocoresco triturado."}]},
+{id:"mil",t:"Milkshakes",s:"300 ml por R$ 9,50 · 400 ml por R$ 12,00",items:[
+ {n:"Milkshake",p:0,d:"Chocolate, morango, paçoca, leite ninho, Oreo ou leite condensado.",from:9.5,g:[G("Sabor",["Chocolate","Morango","Paçoca","Leite Ninho","Oreo","Leite condensado"]),G("Tamanho",[["300 ml",9.5],["400 ml",12]],true)]}]}
+];
+let cart=[],F={name:"",when:"O quanto antes",pay:"Pix",obs:""};
+$("#menu").innerHTML=D.map((c,ci)=>`<section id="${c.id}"><h2>${c.t}</h2><p class="sub">${c.s}</p>${c.items.map((it,ii)=>`<div class="card${c.id=="esp"?" hot":""}"><div><h3>${it.n}</h3>${it.d?`<p>${it.d}</p>`:""}<div class="price">${it.from?"a partir de ":""}${R(it.p||it.from)}</div></div><button class="btn" data-c="${ci}" data-i="${ii}">${it.g?"Montar":"Adicionar"}</button></div>`).join("")}</section>`).join("");
+$("#menu").onclick=e=>{const b=e.target.closest("button[data-c]");if(!b)return;const it=D[b.dataset.c].items[b.dataset.i];it.g?openItem(it):(add(it.n,"",it.p,1),flash(b))};
+function flash(b){const t=b.textContent;b.textContent="Adicionado ✓";setTimeout(()=>b.textContent=t,900)}
+function add(n,d,p,q){const l=cart.find(x=>x.n==n&&x.d==d);l?l.q+=q:cart.push({n,d,p,q});sync()}
+const total=()=>cart.reduce((s,l)=>s+l.p*l.q,0),count=()=>cart.reduce((s,l)=>s+l.q,0);
+function sync(){$("#cn").textContent=count();$("#bottom").style.display=count()?"block":"none";$("#bl").textContent=`Ver pedido · ${count()} ${count()>1?"itens":"item"}`;$("#bt").textContent=R(total())}
+function show(h){$("#sheet").innerHTML=h;$("#ov").classList.add("on");$("#sheet").scrollTop=0}
+function hide(){$("#ov").classList.remove("on")}
+$("#ov").onclick=e=>{if(e.target.id=="ov"||e.target.closest(".x"))hide()};
+document.onkeydown=e=>{if(e.key=="Escape")hide()};
+$("#cb").onclick=$("#bb").onclick=openCart;
+function openItem(it){let q=1;
+ show(`<div class="top"><h2>${it.n}</h2><button class="x" aria-label="Fechar">×</button></div><p class="sub">${it.d}</p>${it.g.map((g,i)=>`<fieldset><legend>${g.k}</legend><div class="pills">${g.o.map((o,j)=>`<label class="pill"><input type="radio" name="g${i}" value="${j}"><span>${o[0]}${g.price?" · "+R(o[1]):""}</span></label>`).join("")}</div></fieldset>`).join("")}<p class="err" id="er" role="alert"></p><div class="row"><div class="step"><button data-d="-1" aria-label="Menos">−</button><b id="q">1</b><button data-d="1" aria-label="Mais">+</button></div><button class="btn" id="ok"></button></div>`);
+ const price=()=>{let p=it.p;it.g.forEach((g,i)=>{const c=$(`input[name=g${i}]:checked`);if(g.price)p=c?g.o[c.value][1]:it.from||p});return p};
+ const upd=()=>{$("#q").textContent=q;$("#ok").textContent=`Adicionar · ${R(price()*q)}`};upd();
+ $("#sheet").onchange=upd;
+ $("#sheet").onclick=e=>{const d=e.target.closest("[data-d]");if(d){q=Math.max(1,q+ +d.dataset.d);upd()}
+  if(e.target.closest(".x"))hide();
+  if(e.target.id=="ok"){const parts=[];for(let i=0;i<it.g.length;i++){const c=$(`input[name=g${i}]:checked`);if(!c){$("#er").textContent=`Escolha: ${it.g[i].k.toLowerCase()}.`;return}parts.push(`${it.g[i].k}: ${it.g[i].o[c.value][0]}`)}
+   add(it.n,parts.join(", "),price(),q);hide()}}}
+function openCart(){
+ if(!cart.length){show(`<div class="top"><h2>Seu pedido</h2><button class="x" aria-label="Fechar">×</button></div><p class="sub">Seu pedido está vazio. Escolha um item do cardápio para começar.</p>`);$("#sheet").onclick=e=>{if(e.target.closest(".x"))hide()};return}
+ show(`<div class="top"><h2>Seu pedido</h2><button class="x" aria-label="Fechar">×</button></div>${cart.map((l,i)=>`<div class="line"><div><b>${l.n}</b>${l.d?`<small>${l.d}</small>`:""}<small>${R(l.p)} cada</small></div><div class="step"><button data-l="${i}" data-d="-1" aria-label="Menos">−</button><b>${l.q}</b><button data-l="${i}" data-d="1" aria-label="Mais">+</button></div></div>`).join("")}
+ <div class="tot"><span>Total</span><span>${R(total())}</span></div>
+ <label class="f">Seu nome<input type="text" id="fn" autocomplete="name" value="${F.name.replace(/"/g,"&quot;")}"></label>
+ <label class="f">Horário de retirada na loja<select id="fw">${["O quanto antes","Em 15 minutos","Em 30 minutos","Em 1 hora"].map(o=>`<option${o==F.when?" selected":""}>${o}</option>`).join("")}</select></label>
+ <label class="f">Forma de pagamento<select id="fp">${["Pix","Cartão","Dinheiro"].map(o=>`<option${o==F.pay?" selected":""}>${o}</option>`).join("")}</select></label>
+ <label class="f">Observações (opcional)<textarea id="fo" rows="2"></textarea></label>
+ <p class="err" id="er" role="alert"></p><button class="btn" id="send" style="width:100%;padding:15px">Enviar pedido no WhatsApp</button>
+ <p class="note">Você será levado ao WhatsApp da Gelato Express com o pedido pronto para enviar. O pagamento é finalizado por lá. <a id="fb" href="#" target="_blank" rel="noopener" hidden>Abrir WhatsApp</a></p>`);
+ $("#fo").value=F.obs;
+ $("#sheet").oninput=()=>{F={name:$("#fn").value,when:$("#fw").value,pay:$("#fp").value,obs:$("#fo").value}};
+ $("#sheet").onclick=e=>{if(e.target.closest(".x"))return hide();
+  const d=e.target.closest("[data-l]");if(d){const l=cart[d.dataset.l];l.q+=+d.dataset.d;if(l.q<1)cart.splice(d.dataset.l,1);sync();return openCart()}
+  if(e.target.id=="send"){F.name=F.name.trim();if(!F.name){$("#er").textContent="Digite seu nome para enviar o pedido.";$("#fn").focus();return}
+   const m=[`*Novo pedido - Gelato Express*`,`Cliente: ${F.name}`,`Retirada na loja: ${F.when}`,`Pagamento: ${F.pay}`,"",...cart.map(l=>`${l.q}x ${l.n}${l.d?` (${l.d})`:""} - ${R(l.p*l.q)}`),"",`*Total: ${R(total())}*`];
+   if(F.obs.trim())m.push("",`Obs: ${F.obs.trim()}`);
+   const u=`https://wa.me/${PHONE}?text=${encodeURIComponent(m.join("\n"))}`;const a=$("#fb");a.href=u;a.hidden=false;a.click()}}}
+sync();
+</script>
+</body>
+</html>
