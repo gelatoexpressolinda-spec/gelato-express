@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gelato Express | Cardápio</title>
-<meta name="description" content="Peça de casa e retire na loja. Casquinhas, sundaes e milkshakes da Gelato Express, com pedido direto pelo WhatsApp.">
+<meta name="description" content="Peça e retire na loja. Sorvetes expressos, brownie, sundaes e milkshakes tradicionais e gourmet da Gelato Express, com pedido pelo WhatsApp.">
 <meta name="theme-color" content="#1b0e09">
 <link rel="icon" href="logo.jpg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Gelato Express | Cardápio">
-<meta property="og:description" content="Peça de casa e retire na loja. Casquinhas, sundaes e milkshakes com pedido pelo WhatsApp.">
+<meta property="og:description" content="Peça e retire na loja. Sorvetes, brownie, sundaes e milkshakes, pedido pelo WhatsApp.">
 <meta property="og:image" content="https://gelato-express.vercel.app/banner.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
@@ -81,11 +81,11 @@ input[type=text],select,textarea{display:block;width:100%;margin-top:6px;backgro
 <body>
 <header><div class="wrap">
   <div class="bar"><img src="logo.jpg" alt="Logo Gelato Express"><h1>Gelato Express</h1><button class="cartbtn" id="cb" aria-label="Abrir pedido">Pedido <span id="cn">0</span></button></div>
-  <nav class="chips" aria-label="Categorias"><a href="#cas">Casquinha</a><a href="#sun">Sundae</a><a href="#esp">Especiais</a><a href="#mil">Milkshakes</a></nav>
+  <nav class="chips" aria-label="Categorias"><a href="#exp">Sorvetes</a><a href="#bro">Brownie</a><a href="#sun">Sundae</a><a href="#esp">Especiais</a><a href="#milt">Milk Tradicional</a><a href="#milg">Milk Gourmet</a></nav>
 </div></header>
 <main class="wrap">
   <div class="hero"><img src="banner.jpg" alt="Gelato Express, sorveteria e doceria"></div>
-  <p class="how"><b>Peça de casa, retire na loja.</b> Monte seu pedido aqui e envie pelo WhatsApp para confirmar e pagar.</p>
+  <p class="how"><b>Trabalhamos só com retirada por enquanto.</b> Monte seu pedido aqui e envie pelo WhatsApp para confirmar e pagar.</p>
   <div id="menu"></div>
   <footer>Gelato Express · Desde 2025</footer>
 </main>
@@ -97,17 +97,33 @@ const R=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const $=s=>document.querySelector(s);
 const G=(k,o,price)=>({k,o:o.map(x=>Array.isArray(x)?x:[x]),price});
 const D=[
-{id:"cas",t:"Sorvete de casquinha",s:"Crocante e na hora",items:[
- {n:"Baunilha",p:3.5},{n:"Chocolate",p:3.5},{n:"Misto",p:3.5,d:"Baunilha e chocolate na mesma casquinha"}]},
-{id:"sun",t:"Sundae tradicional",s:"Monte do seu jeito",items:[
- {n:"Sundae tradicional",p:8,d:"Sorvete de chocolate, baunilha ou misto, com a cobertura que você escolher. Amendoim é opcional.",g:[G("Sabor",["Chocolate","Baunilha","Misto"]),G("Amendoim",["Sem amendoim","Com amendoim"]),G("Cobertura",["Morango","Leite condensado","Chocolate"])]}]},
-{id:"esp",t:"Sundaes especiais",s:"Os queridinhos da casa",items:[
- {n:"Floresta Negra",p:12,d:"Sorvete de chocolate, pedaços de morango, geleia de morango e calda de morango."},
- {n:"Arretado de Bom",p:11,d:"Sorvete de baunilha, paçoca, amendoim e uma deliciosa calda de leite condensado."},
- {n:"IceBrownie",p:13,d:"Sorvete misto, calda artesanal de chocolate e pedaços de brownie."},
- {n:"Chocoresco",p:12,d:"Sorvete de chocolate, calda artesanal de chocolate e bastante chocoresco triturado."}]},
-{id:"mil",t:"Milkshakes",s:"300 ml por R$ 9,50 · 400 ml por R$ 12,00",items:[
- {n:"Milkshake",p:0,d:"Chocolate, morango, paçoca, leite ninho, Oreo ou leite condensado.",from:9.5,g:[G("Sabor",["Chocolate","Morango","Paçoca","Leite Ninho","Oreo","Leite condensado"]),G("Tamanho",[["300 ml",9.5],["400 ml",12]],true)]}]}
+{id:"exp",t:"Sorvetes Expressos",s:"Sorvete soft na casquinha ou no cascão",items:[
+ {n:"Sorvete de Casquinha",p:3.5,d:"Casquinha tradicional crocante com sorvete soft.",g:[G("Sabor",["Baunilha","Chocolate","Misto"])]},
+ {n:"Sorvete de Cascão",p:6,d:"Cascão maior e recheado com sorvete soft cremoso.",g:[G("Sabor",["Baunilha","Chocolate","Misto"]),G("Cobertura",["Morango","Leite condensado","Chocolate","Chiclete Kids","Caramelo","Frutas Vermelhas","Chocolate e Avelã","Menta"])]}]},
+{id:"bro",t:"Brownie",s:"Fatia avulsa",items:[
+ {n:"Brownie",p:5,d:"Fatia avulsa de brownie de chocolate (60g)."}]},
+{id:"sun",t:"Sundae tradicional",s:"Copo padrão + cobertura",items:[
+ {n:"Sundae tradicional",p:8,d:"Sorvete soft com cobertura à escolha e amendoim opcional.",g:[G("Sabor",["Chocolate","Baunilha","Misto"]),G("Amendoim",["Sem amendoim","Com amendoim"]),G("Cobertura",["Morango","Leite condensado","Chocolate","Chiclete Kids","Caramelo","Frutas Vermelhas","Chocolate e Avelã","Menta"])]}]},
+{id:"esp",t:"Sundaes especiais",s:"Copo especial",items:[
+ {n:"Sundae Floresta Negra",p:10,d:"Copo especial com sorvete de chocolate e morangos."},
+ {n:"Sundae de Brownie",p:10,d:"Copo especial com sorvete e pedaços generosos de brownie."}]},
+{id:"milt",t:"Milkshakes tradicionais",s:"300 ml ou 400 ml — o menor valor é do 300 ml",items:[
+ {n:"Milkshake Tradicional",p:0,d:"Escolha o sabor e o tamanho.",from:9.5,g:[G("Sabor e tamanho",[
+  ["Menta – 300 ml",9.5],["Menta – 400 ml",12],
+  ["Morango – 300 ml",9.5],["Morango – 400 ml",12],
+  ["Leite condensado – 300 ml",9.5],["Leite condensado – 400 ml",12],
+  ["Chocolate – 300 ml",9.5],["Chocolate – 400 ml",12],
+  ["Flocos – 300 ml",10],["Flocos – 400 ml",12.5]
+ ],true)]}]},
+{id:"milg",t:"Milkshakes gourmet",s:"300 ml ou 400 ml — o menor valor é do 300 ml",items:[
+ {n:"Milkshake Gourmet",p:0,d:"Escolha o sabor e o tamanho.",from:9.5,g:[G("Sabor e tamanho",[
+  ["Chocomenta – 300 ml",10],["Chocomenta – 400 ml",14],
+  ["Paçoquito (Paçoca) – 300 ml",9.5],["Paçoquito (Paçoca) – 400 ml",13],
+  ["Orecock (Chocoresco) – 300 ml",10.5],["Orecock (Chocoresco) – 400 ml",14],
+  ["Tropicana (Maracujá) – 300 ml",9.5],["Tropicana (Maracujá) – 400 ml",12],
+  ["Ninhopower (Ninho) – 300 ml",10],["Ninhopower (Ninho) – 400 ml",13],
+  ["Black Forest (Floresta Negra) – 300 ml",11],["Black Forest (Floresta Negra) – 400 ml",15]
+ ],true)]}]}
 ];
 let cart=[],F={name:"",when:"O quanto antes",pay:"Pix",obs:""};
 $("#menu").innerHTML=D.map((c,ci)=>`<section id="${c.id}"><h2>${c.t}</h2><p class="sub">${c.s}</p>${c.items.map((it,ii)=>`<div class="card${c.id=="esp"?" hot":""}"><div><h3>${it.n}</h3>${it.d?`<p>${it.d}</p>`:""}<div class="price">${it.from?"a partir de ":""}${R(it.p||it.from)}</div></div><button class="btn" data-c="${ci}" data-i="${ii}">${it.g?"Montar":"Adicionar"}</button></div>`).join("")}</section>`).join("");
@@ -152,3 +168,4 @@ sync();
 </script>
 </body>
 </html>
+
