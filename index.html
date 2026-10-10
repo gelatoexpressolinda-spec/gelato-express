@@ -74,7 +74,7 @@ input[type=text],select,textarea{display:block;width:100%;margin-top:6px;backgro
 <body>
 <header><div class="wrap">
   <div class="bar"><img src="logo.jpg" alt="Logo Gelato Express"><h1>Gelato Express</h1><button class="cartbtn" id="cb" aria-label="Abrir pedido">Pedido <span id="cn">0</span></button></div>
-  <nav class="chips" aria-label="Categorias"><a href="#exp">Sorvetes</a><a href="#bro">Brownie</a><a href="#sun">Sundae</a><a href="#esp">Especiais</a><a href="#milt">Milkshakes</a><a href="#sorv">Tigelas</a><a href="#acai">Açaí</a></nav>
+  <nav class="chips" aria-label="Categorias"><a href="#sun">Sundae</a><a href="#sorv">Tigelas</a><a href="#acai">Açaí</a><a href="#milt">Milkshakes</a><a href="#milg">Gourmet</a></nav>
 </div></header>
 <main class="wrap">
   <div class="hero"><img src="banner.jpg" alt="Gelato Express, sorveteria e doceria"></div>
@@ -89,29 +89,21 @@ const PHONE="5581991554949";
 const R=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const $=s=>document.querySelector(s);
 const G=(k,o,price)=>({k,o:o.map(x=>Array.isArray(x)?x:[x]),price});
+const GM=(k,o,max)=>({k,o:o.map(x=>[x]),max,multi:true});
 const D=[
-{id:"exp",t:"Sorvete Expresso",s:"Sorvete soft na casquinha ou no cascão",items:[
- {n:"Casquinha",p:3.5,d:"Casquinha tradicional crocante com sorvete soft.",g:[G("Sabor",["Baunilha","Chocolate","Misto"])]},
- {n:"Cascão",p:6,d:"Cascão maior e recheado com sorvete soft cremoso.",g:[G("Sabor",["Baunilha","Chocolate","Misto"]),G("Cobertura",["Morango","Leite condensado","Chocolate","Chiclete Kids","Caramelo","Frutas Vermelhas","Chocolate e Avelã","Menta"])]}]},
-{id:"ccs",t:"Cascão com Sorvete",s:"Na casquinha grande, por bola",items:[
- {n:"1 bola",p:5,d:"Baunilha, chocolate ou misto.",g:[G("Sabor",["Baunilha","Chocolate","Misto"])]},
- {n:"2 bolas",p:9,d:"Baunilha, chocolate ou misto.",g:[G("Sabor",["Baunilha","Chocolate","Misto"])]},
- {n:"3 bolas",p:13,d:"Baunilha, chocolate ou misto.",g:[G("Sabor",["Baunilha","Chocolate","Misto"])]}]},
-{id:"bro",t:"Brownie",s:"Fatia avulsa",items:[
- {n:"Brownie",p:5,d:"Fatia avulsa de brownie de chocolate (60g)."}]},
 {id:"sun",t:"Sundae",s:"Copo especial",items:[
  {n:"Sundae de Maracujá",p:10,d:"Sorvete cremoso com calda de maracujá."},
  {n:"Sundae de Morango",p:8,d:"Sorvete cremoso coberto com calda aromática de morango."},
  {n:"Sundae de Chocolate",p:8,d:"Sorvete cremoso com generosa calda de chocolate."},
  {n:"Sundae de Caramelo",p:8,d:"Sorvete cremoso coroado com calda de caramelo dourada e aveludada."}]},
 {id:"sorv",t:"Sorvetes & Cremes",s:"Em tigela, para saborear com calma",items:[
- {n:"Tigela 300 ml",p:12,d:"3 complementos + 1 calda à sua escolha."},
- {n:"Tigela 500 ml",p:23,d:"5 complementos + 2 caldas à sua escolha."},
- {n:"Cupuaçu 300 ml",p:15,d:"3 complementos + 1 calda à sua escolha."},
- {n:"Cupuaçu 500 ml",p:22,d:"5 complementos + 2 caldas à sua escolha."}]},
+ {n:"Tigela 300 ml",p:12,d:"3 complementos + 1 calda à sua escolha.",g:[GM("Complementos (escolha até 3)",["Creme de Ovomaltine","Creme de Ninho","Morango Trufado","Nata com Goiaba","Tapioca","Delícia de Abacaxi","Cupuaçu Trufado","Amendoim","Jujuba","Marshmallow","M&M","Pó de Paçoca","Granola","Leite em Pó","Chocoball"],3),GM("Calda (escolha até 1)",["Frutas Vermelhas","Morango","Chocolate","Leite Condensado","Chocolate com Avelã","Caramelo","Menta","Chocomenta","Chiclete"],1)]},
+ {n:"Tigela 500 ml",p:23,d:"5 complementos + 2 caldas à sua escolha.",g:[GM("Complementos (escolha até 5)",["Creme de Ovomaltine","Creme de Ninho","Morango Trufado","Nata com Goiaba","Tapioca","Delícia de Abacaxi","Cupuaçu Trufado","Amendoim","Jujuba","Marshmallow","M&M","Pó de Paçoca","Granola","Leite em Pó","Chocoball"],5),GM("Calda (escolha até 2)",["Frutas Vermelhas","Morango","Chocolate","Leite Condensado","Chocolate com Avelã","Caramelo","Menta","Chocomenta","Chiclete"],2)]},
+ {n:"Cupuaçu 300 ml",p:15,d:"3 complementos + 1 calda à sua escolha.",g:[GM("Complementos (escolha até 3)",["Creme de Ovomaltine","Creme de Ninho","Morango Trufado","Nata com Goiaba","Tapioca","Delícia de Abacaxi","Cupuaçu Trufado","Amendoim","Jujuba","Marshmallow","M&M","Pó de Paçoca","Granola","Leite em Pó","Chocoball"],3),GM("Calda (escolha até 1)",["Frutas Vermelhas","Morango","Chocolate","Leite Condensado","Chocolate com Avelã","Caramelo","Menta","Chocomenta","Chiclete"],1)]},
+ {n:"Cupuaçu 500 ml",p:22,d:"5 complementos + 2 caldas à sua escolha.",g:[GM("Complementos (escolha até 5)",["Creme de Ovomaltine","Creme de Ninho","Morango Trufado","Nata com Goiaba","Tapioca","Delícia de Abacaxi","Cupuaçu Trufado","Amendoim","Jujuba","Marshmallow","M&M","Pó de Paçoca","Granola","Leite em Pó","Chocoball"],5),GM("Calda (escolha até 2)",["Frutas Vermelhas","Morango","Chocolate","Leite Condensado","Chocolate com Avelã","Caramelo","Menta","Chocomenta","Chiclete"],2)]}]},
 {id:"acai",t:"Açaí no Copo",s:"Cremoso, para montar do seu jeito",items:[
- {n:"Açaí 300 ml",p:13,d:"3 complementos + 1 calda à sua escolha."},
- {n:"Açaí 400 ml",p:17,d:"5 complementos + 2 caldas à sua escolha."}]},
+ {n:"Açaí 300 ml",p:13,d:"3 complementos + 1 calda à sua escolha.",g:[GM("Complementos (escolha até 3)",["Creme de Ovomaltine","Creme de Ninho","Morango Trufado","Nata com Goiaba","Tapioca","Delícia de Abacaxi","Cupuaçu Trufado","Amendoim","Jujuba","Marshmallow","M&M","Pó de Paçoca","Granola","Leite em Pó","Chocoball"],3),GM("Calda (escolha até 1)",["Frutas Vermelhas","Morango","Chocolate","Leite Condensado","Chocolate com Avelã","Caramelo","Menta","Chocomenta","Chiclete"],1)]},
+ {n:"Açaí 400 ml",p:17,d:"5 complementos + 2 caldas à sua escolha.",g:[GM("Complementos (escolha até 5)",["Creme de Ovomaltine","Creme de Ninho","Morango Trufado","Nata com Goiaba","Tapioca","Delícia de Abacaxi","Cupuaçu Trufado","Amendoim","Jujuba","Marshmallow","M&M","Pó de Paçoca","Granola","Leite em Pó","Chocoball"],5),GM("Calda (escolha até 2)",["Frutas Vermelhas","Morango","Chocolate","Leite Condensado","Chocolate com Avelã","Caramelo","Menta","Chocomenta","Chiclete"],2)]}]},
 {id:"milt",t:"Milkshakes Tradicionais",s:"300 ml ou 400 ml",items:[
  {n:"Milkshake Tradicional",p:0,d:"Escolha o sabor e o tamanho.",from:9.5,g:[G("Sabor e tamanho",[
   ["Baunilha – 300 ml",9.5],["Baunilha – 400 ml",12],
@@ -136,13 +128,13 @@ $("#ov").onclick=e=>{if(e.target.id=="ov"||e.target.closest(".x"))hide()};
 document.onkeydown=e=>{if(e.key=="Escape")hide()};
 $("#cb").onclick=$("#bb").onclick=openCart;
 function openItem(it){let q=1;
- show(`<div class="top"><h2>${it.n}</h2><button class="x" aria-label="Fechar">×</button></div><p class="sub">${it.d}</p>${it.g.map((g,i)=>`<fieldset><legend>${g.k}</legend><div class="pills">${g.o.map((o,j)=>`<label class="pill"><input type="radio" name="g${i}" value="${j}"><span>${o[0]}${g.price?" · "+R(o[1]):""}</span></label>`).join("")}</div></fieldset>`).join("")}<p class="err" id="er" role="alert"></p><div class="row"><div class="step"><button data-d="-1" aria-label="Menos">−</button><b id="q">1</b><button data-d="1" aria-label="Mais">+</button></div><button class="btn" id="ok"></button></div>`);
+ show(`<div class="top"><h2>${it.n}</h2><button class="x" aria-label="Fechar">×</button></div><p class="sub">${it.d}</p>${it.g.map((g,i)=>`<fieldset><legend>${g.k}</legend><div class="pills">${g.o.map((o,j)=>`<label class="pill"><input type="${g.multi?"checkbox":"radio"}" name="g${i}" value="${j}"><span>${o[0]}${g.price?" · "+R(o[1]):""}</span></label>`).join("")}</div></fieldset>`).join("")}<p class="err" id="er" role="alert"></p><div class="row"><div class="step"><button data-d="-1" aria-label="Menos">−</button><b id="q">1</b><button data-d="1" aria-label="Mais">+</button></div><button class="btn" id="ok"></button></div>`);
  const price=()=>{let p=it.p;it.g.forEach((g,i)=>{const c=$(`input[name=g${i}]:checked`);if(g.price)p=c?g.o[c.value][1]:it.from||p});return p};
  const upd=()=>{$("#q").textContent=q;$("#ok").textContent=`Adicionar · ${R(price()*q)}`};upd();
- $("#sheet").onchange=upd;
+ $("#sheet").onchange=e=>{const inp=e.target;if(inp.type=="checkbox"){const i=+inp.name.slice(1);const g=it.g[i];const checked=[...document.querySelectorAll(`input[name=${inp.name}]:checked`)];if(checked.length>g.max){inp.checked=false;$("#er").textContent=`Escolha até ${g.max} em "${g.k.replace(/\s*\(.*\)/,"")}".`;}else{$("#er").textContent="";}}upd()};
  $("#sheet").onclick=e=>{const d=e.target.closest("[data-d]");if(d){q=Math.max(1,q+ +d.dataset.d);upd()}
   if(e.target.closest(".x"))hide();
-  if(e.target.id=="ok"){const parts=[];for(let i=0;i<it.g.length;i++){const c=$(`input[name=g${i}]:checked`);if(!c){$("#er").textContent=`Escolha: ${it.g[i].k.toLowerCase()}.`;return}parts.push(`${it.g[i].k}: ${it.g[i].o[c.value][0]}`)}
+  if(e.target.id=="ok"){const parts=[];for(let i=0;i<it.g.length;i++){const g=it.g[i];if(g.multi){const checked=[...document.querySelectorAll(`input[name=g${i}]:checked`)];if(checked.length)parts.push(`${g.k.replace(/\s*\(.*\)/,"")}: ${checked.map(c=>g.o[c.value][0]).join(", ")}`)}else{const c=$(`input[name=g${i}]:checked`);if(!c){$("#er").textContent=`Escolha: ${g.k.toLowerCase()}.`;return}parts.push(`${g.k}: ${g.o[c.value][0]}`)}}
    add(it.n,parts.join(", "),price(),q);hide()}}}
 function openCart(){
  if(!cart.length){show(`<div class="top"><h2>Seu pedido</h2><button class="x" aria-label="Fechar">×</button></div><p class="sub">Seu pedido está vazio. Escolha um item do cardápio para começar.</p>`);$("#sheet").onclick=e=>{if(e.target.closest(".x"))hide()};return}
